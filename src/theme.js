@@ -25,6 +25,11 @@ export default createMuiTheme({
                 minHeight: 100,
             }
         },
+        MuiButton:{
+            root:{
+                backgroundColor: 'grey',
+            }
+        },
         MuiTextField:{
             root:{
                 width: 600,
