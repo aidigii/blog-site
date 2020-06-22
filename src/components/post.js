@@ -6,15 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import theme from '../theme'
 
 export default class Post extends React.Component{
+
+    
     render(){
+       // console.log(this.props.post)
         return(
             <MuiThemeProvider theme = {theme}>
                 <Paper>
                  <Typography variant="h1">
-                     Hongjoong and Seonghwa
+                     {this.props.post.title}
                  </Typography>
                  <Typography variant="h2">
-                     Yunho
+                     {this.props.post.post}
                  </Typography>
 
                 </Paper>

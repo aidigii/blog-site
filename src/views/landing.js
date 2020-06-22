@@ -13,7 +13,7 @@ export default class Landing extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            
+            docArray: [],
         }
     }
 
@@ -22,11 +22,19 @@ export default class Landing extends React.Component{
 
         let observer = query.onSnapshot(querySnapshot => {
             const docSnapshots = querySnapshot.docs;
-
+            let newArray = [];
             for (var i in docSnapshots) {
-                const doc = docSnapshots[i].data();
-                 console.log(doc)
+                //each document 
+                const doc = docSnapshots[i];
+               newArray = newArray.concat(doc.data());
+     
             }
+
+            this.setState({ docArray:
+                [...new Set([...newArray])]
+            });
+
+            
         }, err => {
           console.log(`Encountered error: ${err}`);
         });
@@ -35,6 +43,8 @@ export default class Landing extends React.Component{
 
 
     render(){
+        const posts = this.state.docArray.map(post => {
+            return <Post post = {post} />});
         return(
             <MuiThemeProvider theme={theme}>
                 <Typography variant="h3">
@@ -43,8 +53,8 @@ export default class Landing extends React.Component{
                 <Button href="/create">
                     Create
                 </Button>
-             
-                <Post />
+                {posts}
+                
             </MuiThemeProvider>
         );
     }
