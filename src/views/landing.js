@@ -45,6 +45,7 @@ export default class Landing extends React.Component{
     render(){
         const posts = this.state.docArray.map(post => {
             return <Post post = {post} />});
+            
         return(
             <MuiThemeProvider theme={theme}>
                 <Typography variant="h3">

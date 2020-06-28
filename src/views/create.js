@@ -21,8 +21,8 @@ export default class CreatePage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            title: '',
-            post: '',
+            title: this.props.location.state.title,
+            post: this.props.location.state.post,
         }
     }
 
@@ -42,6 +42,7 @@ export default class CreatePage extends React.Component{
     }
 
     render(){
+        console.log(this.props.location.state)
         return(
             <MuiThemeProvider theme={theme}>
                 <Button href="/">views</Button>
