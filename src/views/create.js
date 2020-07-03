@@ -21,27 +21,60 @@ export default class CreatePage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            title: '',
-            post: '',
+            title: (this.props.location.state == null) ? '' : this.props.location.state.title,
+            post: (this.props.location.state == null) ? '' : this.props.location.state.post,
+            created: '',
         }
     }
 
     handleSubmit = (e) => { 
-    // Add a new document in collection "cities"
+    // Add a new document in collection "posts"
         e.preventDefault();
-        db.collection('posts').doc().set({
+       
+        if(this.props.location.state == null){
+            db.collection('posts').doc().set({
+                title: this.state.title,
+                post: this.state.post, 
+         
+            }, {merge: false})
+    
+            this.setState({
+                title: '',
+                post: '',
+              });
+        }
+        else{
+            
+            db.collection('posts')
+            .where('title','==',this.props.location.state.title)
+            .where('post','==', this.props.location.state.post)
+            .get()
+            .then(snap => {
+                snap.forEach(doc => {
+                    this.updatePost(doc.id)
+                })
+            })
+        }    
+    };
+
+    updatePost = (id) => {
+
+        db.collection('posts')
+        .doc(id)
+        .update({
             title: this.state.title,
             post: this.state.post, 
-        }, {merge: false})
+        })
+        .then(console.log('success!')) 
 
         this.setState({
             title: '',
             post: '',
           });
-       
-    }
+    };
 
     render(){
+        console.log(this.state)
         return(
             <MuiThemeProvider theme={theme}>
                 <Button href="/">views</Button>

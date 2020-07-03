@@ -30,11 +30,6 @@ export default createMuiTheme({
                 backgroundColor: 'grey',
             }
         },
-        MuiTextField:{
-            root:{
-                width: 600,
-            } 
-        },
     },
 });
 
