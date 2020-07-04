@@ -55,6 +55,7 @@ export default class Landing extends React.Component{
                     Create
                 </Button>
                 {posts}
+                <Button>Log out</Button>
                 
             </MuiThemeProvider>
         );

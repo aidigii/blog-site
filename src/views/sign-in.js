@@ -21,6 +21,11 @@ export default class SignIn extends React.Component{
     SignIn = () => {
 
         auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((user) => {
+            if(user){
+                this.setState({redirect: true})
+            }
+        })
         .catch(function(error){
             var errorCode = error.code; 
             var errorMessage = error.message; 
@@ -33,25 +38,31 @@ export default class SignIn extends React.Component{
             console.log(error);
         })
 
+    };
 
+    SignOut = () => {
+        auth.signOut();
     };
 
 
     render(){
-        
+
+        //if true, redirects to the home page
         if(this.state.redirect) {
-            return <Redirect to={{pathname:'/create',
+            return <Redirect to={{pathname:'/',
                         state: {title: this.state.title, post: this.state.post}}} />
         }
         
-        auth.onAuthStateChanged((user) => {
-            if(user){
-               this.setState({redirect:true})
-            }
-            else{
-                console.log('you are not signed in')
-            }
-        })
+        // //redirects the page to home if user is authenticated 
+        // auth.onAuthStateChanged((user) => {
+        //     if(user){
+        //         console.log(user.uid)
+        //       // this.setState({redirect:true})
+        //     }
+        //     else{
+        //         console.log('you are not signed in')
+        //     }
+        // })
 
         return(
             <div>
@@ -67,6 +78,7 @@ export default class SignIn extends React.Component{
                             type="password"
                             onInput={e => this.setState({password:e.target.value})}></TextField>
                 <Button onClick={this.SignIn}>Sign-in</Button>
+                <Button onClick={this.SignOut}>Sign-out</Button>
                 </MuiThemeProvider>
             </div>
         )
