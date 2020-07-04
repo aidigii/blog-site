@@ -56,6 +56,7 @@ export default class Landing extends React.Component{
                 </Button>
                 {posts}
                 <Button>Log out</Button>
+                <Button href="/profile">Users</Button>
                 
             </MuiThemeProvider>
         );

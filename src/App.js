@@ -3,9 +3,12 @@ import Landing from './views/landing';
 import CreatePage from './views/create';
 import SignIn from './views/sign-in';
 import SignUp from './views/sign-up';
+import Profile from './views/profile';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
+
 class App extends React.Component{
+
   render(){
     return (
       <Router>
@@ -13,6 +16,8 @@ class App extends React.Component{
         <Route path="/create" component={CreatePage} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile/:userId" component={Profile} />
       </Router>
     )
   }
