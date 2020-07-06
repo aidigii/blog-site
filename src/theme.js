@@ -1,6 +1,18 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
+    palette: {
+        root:{
+            backgroundColor: '#243586',
+        },
+        grey: {
+          800: "#243586", // overrides failed
+          900: "#243586" // overrides success
+        },
+        background: {
+          paper: "#F9EDD2"
+        }
+      },
     typography:{
         body1: {
             fontSize: 25,
