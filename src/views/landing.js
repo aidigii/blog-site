@@ -4,8 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import Post from '../components/post';
 import Button from '@material-ui/core/Button';
 import theme from '../theme'
-
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import Header from '../views/header';
+import Grid from '@material-ui/core/Grid';
 import { db } from '../firebase-config';
+import FeaturedPost from './FeaturedPost';
 
 
 export default class Landing extends React.Component{
@@ -43,22 +47,27 @@ export default class Landing extends React.Component{
 
 
     render(){
+       
         const posts = this.state.docArray.map(post => {
-            return <Post post = {post} />});
-            
+            return <Post key = {post.title}  post={post}/>});
+
         return(
+            <React.Fragment>
             <MuiThemeProvider theme={theme}>
-                <Typography variant="h3">
-                    Aliah 
-                </Typography>
-                <Button href="/create">
-                    Create
-                </Button>
+                <Container maxWidth="lg">
+                <Header title="Aliah's Medium" />
                 {posts}
-                <Button>Log out</Button>
-                <Button href="/profile">Users</Button>
-                
+                </Container>
             </MuiThemeProvider>
+            </React.Fragment>
         );
     }
 }
+
+/**
+ *              <Grid container spacing={4}>
+                {featuredPosts.map((post) => (
+                 <FeaturedPost key={post.title} post={post} />
+                 ))}
+             </Grid>
+ */
