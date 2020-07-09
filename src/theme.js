@@ -10,12 +10,12 @@ export default createMuiTheme({
           900: "#243586" // overrides success
         },
         background: {
-          paper: "#F9EDD2"
+          paper: "#FFFFFF"
         }
       },
     typography:{
         body1: {
-            fontSize: 25,
+            fontSize: 18,
         },
         h1: {
             fontSize: 25,
