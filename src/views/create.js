@@ -4,15 +4,22 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import Header from '../views/header';
 import styled from 'styled-components';
 
 import { db } from '../firebase-config';
 
 import theme from '../theme'
 
+const Container = styled.div`
+    text-align: center; 
+`;
+
 const Input = styled.div`
-    display: flex;
-    flex-direction: row; 
+    width: 500px; 
+    margin: 20px; 
+    display: inline-block;
+    text-align: right; 
 `;
 
 
@@ -78,27 +85,30 @@ export default class CreatePage extends React.Component{
         return(
             <MuiThemeProvider theme={theme}>
                 <Button href="/">views</Button>
+                <Header title="Aliah's Medium" />
+                <Container>
                 <Input>
-                    <Typography variant="h3">
-                        Aliah 
-                    </Typography>
-                   <form>
-                    <InputLabel>Title</InputLabel>
+
+                    
                         <TextField variant="outlined"
+                            label="Title"
+                            fullWidth
                             InputProps={{ style: { fontSize: 20 } }}
                             InputLabelProps = {{ style: {fontSize: 20 }}}
                             value={this.state.title}
                             onInput={e => this.setState({title: e.target.value})} >
                         </TextField>
-                    <InputLabel>Post</InputLabel>
                         <TextField variant="outlined" multiline rows = {20}
+                            label="Start writing here..."
+                            fullWidth
                             InputProps={{ style: { fontSize: 20 } }}
                             value={this.state.post}
                             onInput={e => this.setState({post:e.target.value})}>
                         </TextField>     
                     <Button onClick={this.handleSubmit}>Submit</Button>
-                    </form>
+                
                 </Input>
+                </Container>
             </MuiThemeProvider>
         );
     }
