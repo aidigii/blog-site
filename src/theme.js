@@ -28,7 +28,7 @@ export default createMuiTheme({
         },
         h3: {
             fontSize: 50,
-        }
+        },
     },
     overrides:{
         MuiPaper:{
